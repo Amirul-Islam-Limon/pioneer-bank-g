@@ -1,0 +1,41 @@
+body{
+    margin: 100px;
+}
+.submit-area{
+    max-width: 900px;
+    height: 300px;
+    /* background-color: red; */
+    margin: 25px auto;
+    padding: 30px;
+    border-radius: 7px;
+    box-shadow: 5px 5px 15px gray;
+}
+.submit-area input{
+    height: 35px;
+    width: 100%;
+    margin-top: 20px;
+}
+.submit-area button{
+    margin-top: 20px;
+}
+#trangection-area{
+    display: none;
+}
+.deposit{
+    background-color: slateblue;
+}
+.withdrow{
+    background-color: tomato;
+}
+.balance{
+    background-color: violet;
+}
+.status{
+    margin:20px;
+    padding:20px;
+    color: white;
+    border-radius: 7px;
+}
+.amountInput{
+    max-height: 200px;
+}

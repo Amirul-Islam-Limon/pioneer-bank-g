@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pioneer Bank</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-area">
+        <h1 class="text-center">Welcome To Pioneer Bank</h1>
+        <div class="submit-area">
+            <h4>login</h4>
+            <input type="email" placeholder="Email" name="email" id="email">
+            <input type="password" placeholder="Password" name="password" id="password">
+            <button id="enterButton" class="btn btn-success">Enter</button>
+        </div>
+    </div>
+    <div id="trangection-area">
+        <div class="row">
+            <div class="col-md-4">
+                <div class=" deposit status">
+                    <h5>Deposit</h5>
+                    <h2>$ <span id="currentDeposit">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class=" withdrow status">
+                    <h5>Withdrow</h5>
+                    <h2>$ <span id="currentWithdrow">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class=" balance status">
+                    <h5>Balance</h5>
+                    <h2>$ <span id="currentBalance">1240</span></h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="amountInput submit-area">
+                    <h4>Deposit</h4>
+                    <input id="depositAmount" type="text" placeholder="$ Amount you want to deposit.">
+                    <button id="depositButton" class="btn btn-success">Deposit</button></div>
+            </div>
+            <div class="col-md-6">
+                <div class="amountInput submit-area">
+                    <h4>Withdrow</h4>
+                    <input id="withdrowAmount" type="text" placeholder="$ Amount you want to withdrow">
+                    <button id="withdrowButton" class="btn btn-success">Withdrow</button></div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        // login button ==========================
+
+        let enterButton = document.getElementById("enterButton");
+        enterButton.addEventListener("click",function(){
+            let loginArea = document.getElementById("login-area");
+            loginArea.style.display = "none";
+            let trangectionArea = document.getElementById("trangection-area");
+            trangectionArea.style.display = "block";
+        })
+
+        // deposit button ========================
+
+        amountCalculation("depositButton","depositAmount","currentDeposit","currentBalance")
+
+     
+        // withdraw button ===========================
+        amountCalculation("withdrowButton","withdrowAmount","currentWithdrow","currentBalance")
+        
+
+        function amountCalculation(buttonId,textAmountId,amountId,totalBalance){
+            let buttonAmount = document.getElementById(buttonId);
+            buttonAmount.addEventListener("click",function(){
+            let newAmount = document.getElementById(textAmountId).value;
+            let totalCount = parseFloat(newAmount);
+            if( totalCount > 0){
+                updateSpanText(amountId,totalCount,buttonId)
+                updateSpanText(totalBalance,totalCount,buttonId)
+
+                document.getElementById(textAmountId).value = "";
+            }
+            })
+        }
+
+        function updateSpanText(id ,totalNumber,buttonId){
+            let current = document.getElementById(id).innerText;
+            let currentNumber = parseFloat(current);
+            if(id == "currentBalance" && buttonId == "withdrowButton"){
+                let totalAmount = currentNumber - totalNumber;
+                document.getElementById(id).innerText = totalAmount;
+            }
+            else{
+                let totalAmount = currentNumber + totalNumber;
+                document.getElementById(id).innerText = totalAmount;
+            }
+            
+        }
+    </script>
+</body>
+</html>
